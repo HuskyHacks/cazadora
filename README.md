@@ -1,6 +1,8 @@
 # Cazadora
 Simple hunting script for hunting sussy M365 OAuth Apps.
 
+![image](https://github.com/user-attachments/assets/65e62d12-1165-4177-892e-252001bfe899)
+
 ## About
 This is a very quick triage script that does the following:
 - Uses [device code authentication](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code) to retrieve a token for a user.
@@ -27,7 +29,10 @@ $ python3 main.py [-o] [outfile.json]
 
 - Authenticate with a user that can call the Graph API.
 
- The script will handle the rest!
+ The script will handle the rest! If it finds any suspicious apps, it will print out the application's information along with a color coding for the confidence of the finding.
+
+![image](https://github.com/user-attachments/assets/8e8dd670-d9ae-4260-9700-83e80489b337)
+
 
 ## Docker Quickstart
 I hate Python dependencies too, so I threw in a simple Dockerfile to run the script:
