@@ -3,8 +3,8 @@ Simple hunting script for hunting sussy M365 OAuth Apps.
 
 ## About
 This is a very quick triage script that does the following:
-- Uses device code authentication to retrieve a token for a user
-- Uses that token to call the Graph API to enumerate the user's tenant and collect the the tenant applications and service principals.
+- Uses [device code authentication](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code) to retrieve a token for a user.
+- Uses that token to call the Graph API to enumerate the user's tenant and collect the the tenant. applications and service principals.
 - Runs several hunting rules against the collected output.
 - Organizes and color codes the results.
 
@@ -19,7 +19,13 @@ $ pip3 install -r requirements.txt
 ```
 $ python3 main.py [-o] [outfile.json]
 ```
-- Follow the instructions to authenticate using device code flow. The script will handle the rest!
+- Go to the link in the output (https://microsoft.com/devicelogin)
+
+- Enter the code provided by the script.
+
+- Authenticate with a user that can call the Graph API.
+
+ The script will handle the rest!
 
 ## Docker Quickstart
 I hate Python dependencies too, so I threw in a simple Dockerfile to run the script:
