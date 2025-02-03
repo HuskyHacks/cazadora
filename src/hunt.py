@@ -8,7 +8,7 @@ SUSPICIOUS_REPLY_URL_PATTERN = re.compile(r"^http://localhost:\d+/access/?$")
 TRAITORWARE_APPS = [
     "em client",
     "perfectdata software",
-    "newsletter software super mailer",
+    "newsletter software supermailer",
     "cloudsponge",
     "rclone"
 ]
