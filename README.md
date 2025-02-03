@@ -1,11 +1,6 @@
-# MACT-hunter
-Simple hunting script for M365 OAuth Apps that look like MACT
-
-
+# Cazadora
+Simple hunting script for hunting sussy M365 OAuth Apps.
 
 ## Docker Quickstart
-
-
-
 
 ## 
