@@ -54,3 +54,8 @@ This script hunts for a small collection of observed OAuth TTPs. These TTPs come
 - https://huntresslabs.github.io/rogueapps/
 - https://www.proofpoint.com/us/blog/cloud-security/revisiting-mact-malicious-applications-credible-cloud-tenants
 - https://www.proofpoint.com/us/blog/email-and-cloud-threats/defeating-malicious-application-creation-attacks
+
+## Disclaimer
+This script cannot definitively prove that your tenant does not have any suspicious applications installed in it. The absence of evidence is never the evidence of absense. Please do your own due diligence during investigation, whether this script identifies potentially suspicious apps or not.
+
+This script is distributed with a hope that it will be useful, but myself nor Huntress are promising its efficacy. Please see the LICENSE file for more info.
