@@ -9,6 +9,8 @@ This is a very quick triage script that does the following:
 - Organizes and color codes the results.
 
 ## How-to
+> 💡 I recommend authenticating with a user that can access the Graph API. I tested this script by using my tenant's global admin user. I have not tested it with anything other than an administrator and cannot guarentee it works outside of that context
+
 - Clone the directory and change directories into it.
 - Install the dependencies:
 ```
@@ -43,3 +45,7 @@ This script hunts for a small collection of observed OAuth TTPs. These TTPs come
 - Apps with a reply URL that matches: `http://localhost:[some_port_number]/access` with or without a trailing forward slash.
 - Apps that we consider to be [Traitorware](https://huntresslabs.github.io/rogueapps/).
 
+## References
+- https://huntresslabs.github.io/rogueapps/
+- https://www.proofpoint.com/us/blog/cloud-security/revisiting-mact-malicious-applications-credible-cloud-tenants
+- https://www.proofpoint.com/us/blog/email-and-cloud-threats/defeating-malicious-application-creation-attacks
