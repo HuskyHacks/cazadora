@@ -1,5 +1,8 @@
+from colorama import *
+
+
 def print_logo():
-    print("""
+    print(Fore.CYAN + """
 ==========================================================
                      Cazadora
 
@@ -7,4 +10,4 @@ def print_logo():
 
 Matt Kiely | Principal Security Researcher | Huntress
 ==========================================================
-""")
+""" + Fore.RESET)

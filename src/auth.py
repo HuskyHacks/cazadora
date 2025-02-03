@@ -1,4 +1,5 @@
 import time
+from colorama import Fore
 import requests
 
 
@@ -18,8 +19,8 @@ def authenticate_to_azure():
     device_code_response = requests.post(device_code_url, data=payload)
     device_code_data = device_code_response.json()
 
-    print(
-        f"[*] To authenticate, visit https://microsoft.com/devicelogin and enter the code: {device_code_data['user_code']}")
+    print(Fore.YELLOW + "[!] To authenticate, visit " + Fore.CYAN + "https://microsoft.com/devicelogin" +
+          Fore.YELLOW + " and enter the code: " + Fore.CYAN + device_code_data['user_code'] + Fore.RESET)
 
     token_payload = {
         "client_id": "d3590ed6-52b3-4102-aeff-aad2292ab01c",

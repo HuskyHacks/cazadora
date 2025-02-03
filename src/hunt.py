@@ -1,4 +1,5 @@
 import re
+from colorama import Fore, Back, Style
 from datetime import datetime
 
 # https://www.proofpoint.com/us/blog/cloud-security/revisiting-mact-malicious-applications-credible-cloud-tenants
@@ -82,22 +83,32 @@ def hunt_suspicious_entries(data):
 
 def print_hunt_results(results):
     """
-    Prints out the findings in a structured, readable format, including:
-    - App Name
-    - App ID
-    - Creation Date
-    - Reply URLs
+    Prints out the findings in a structured, readable format, highlighting only the app name:
+    - Medium Confidence: Yellow Foreground
+    - High Confidence: Red Foreground
+    - Extremely High Confidence: Red Background, Yellow Foreground
     """
     print("\n=== HUNT RESULTS ===")
+
+    CONFIDENCE_COLORS = {
+        "apps_named_test_or_close": Fore.YELLOW,
+        "non_alphanumeric_names": Fore.RED,
+        "name_matches_assigned_user": Fore.RED,
+        "suspicious_reply_urls": Back.RED + Fore.YELLOW,
+        "traitorware_apps": Fore.RED
+    }
 
     for category, entries in results.items():
         if entries:
             print(f"\n[!] {category.replace('_', ' ').title()}:")
+
             for sp in entries:
                 sp_id = sp.get("id", "Unknown ID")
                 sp_name = sp.get("displayName", "Unknown Name")
                 created_date = sp.get("createdDateTime", "Unknown Date")
                 reply_urls = sp.get("replyUrls", [])
+
+                name_color = CONFIDENCE_COLORS.get(category, Fore.RESET)
 
                 try:
                     created_date = datetime.strptime(
@@ -106,7 +117,8 @@ def print_hunt_results(results):
                     pass
 
                 print(f"\n  📌 Service Principal Found")
-                print(f"   ├─ 🏷️  Name: {sp_name}")
+                print(
+                    f"   ├─ 🏷️  Name: {name_color}{sp_name}{Fore.RESET}{Back.RESET}")
                 print(f"   ├─ 🆔  ID: {sp_id}")
                 print(f"   ├─ 📅  Created: {created_date}")
 
@@ -122,5 +134,12 @@ def print_hunt_results(results):
         print(
             "\n[+] No suspicious entries found. I'd still recommend that you audit your applications!")
     else:
+        print("\n=== LEGEND ===")
+        print(Fore.YELLOW + "🟡 Medium Confidence:" +
+              Fore.RESET + " Apps that may be test/dev-related. Intel notes that malicious apps can be called 'test' or 'test app' but many legitimate dev-related apps are as well.")
+        print(Fore.RED + "🔴 High Confidence:" + Fore.RESET +
+              " Apps that are likely indicators of suspicious activity. Prioritize investigation.")
+        print(Back.RED + Fore.YELLOW + "🚨 Extremely High Confidence:" +
+              Fore.RESET + Back.RESET + " Apps that should be investigated immediately.")
         print(
             "\n[!] Please audit your Enterprise Applications and Application Registrations for the apps identified by this script!")
