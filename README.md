@@ -63,4 +63,4 @@ This script hunts for a small collection of observed OAuth TTPs. These TTPs come
 ## Disclaimer
 This script cannot definitively prove that your tenant does not have any suspicious applications installed in it. The absence of evidence is never the evidence of absense. Please do your own due diligence during investigation, whether this script identifies potentially suspicious apps or not.
 
-This script is distributed with a hope that it will be useful, but myself nor Huntress are promising its efficacy. Please see the LICENSE file for more info.
+This script is distributed with a hope that it will be useful, but we (myself and Huntress) do not make any promises or guarantees about its efficacy. Please see the LICENSE file for more info.
