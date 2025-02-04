@@ -45,28 +45,38 @@ def make_api_request(url, headers):
             else:
                 print(
                     f"[-] Error collecting data from {url}: {response.status_code} - {response.text}")
-                return {"value": []}
+                return {"value": []}, response.status_code
 
         if retries >= MAX_RETRIES:
             print(f"[-] Max retries exceeded for {url}.")
-            return {"value": all_results}
+            return {"value": all_results}, 500  # Internal failure
 
-    return {"value": all_results}
+    return {"value": all_results}, 200
 
 
 def collect_azure_data(access_token):
     """
     Enumerates the tenant for the authenticated user.
+    Returns a tuple: (collected_data, status_code)
     """
-    print("[*] Collecting Initial Azure Data...")
+    print("[*] Collecting data from tenant...")
     headers = {"Authorization": f"Bearer {access_token}",
                "Content-Type": "application/json"}
 
-    data = {
-        "tenant": make_api_request("https://graph.microsoft.com/v1.0/organization?$select=id,displayName", headers),
-        "applications": make_api_request("https://graph.microsoft.com/v1.0/applications", headers),
-        "service_principals": make_api_request("https://graph.microsoft.com/v1.0/servicePrincipals", headers),
-        "users": make_api_request("https://graph.microsoft.com/v1.0/users", headers)
+    data = {}
+    overall_status = 200  # Default to success
+
+    endpoints = {
+        "tenant": "https://graph.microsoft.com/v1.0/organization?$select=id,displayName",
+        "applications": "https://graph.microsoft.com/v1.0/applications",
+        "service_principals": "https://graph.microsoft.com/v1.0/servicePrincipals",
+        "users": "https://graph.microsoft.com/v1.0/users",
     }
 
-    return data
+    for key, url in endpoints.items():
+        data[key], status = make_api_request(url, headers)
+
+        if status != 200:
+            overall_status = status  # Propagate error status
+
+    return data, overall_status
