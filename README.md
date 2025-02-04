@@ -11,7 +11,7 @@ This is a very quick triage script that does the following:
 - Organizes and color codes the results.
 
 ## How-to
-> 💡 I recommend authenticating with a user that can access the Graph API. I tested this script by using my tenant's global admin user. I have not tested it with anything other than an administrator and cannot guarentee it works outside of that context
+> 💡 You will need to authenticate with a user that can run queries against the Graph API. I recommend using an administrator user from the target tenant.
 
 - Clone the directory and change directories into it.
 - Install the dependencies:
