@@ -5,13 +5,13 @@ Simple hunting script for hunting sussy M365 OAuth Apps.
 
 ## About
 This is a very quick triage script that does the following:
-- Uses [device code authentication](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code) to retrieve a token for a user.
+- Uses [device code authentication](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code) to retrieve a token for a user that is scoped to perform Graph API calls.
 - Uses that token to call the Graph API to enumerate the user's tenant and collect the the tenant. applications and service principals.
 - Runs several hunting rules against the collected output.
 - Organizes and color codes the results.
 
 ## How-to
-> 💡 You will need to authenticate with a user that can run queries against the Graph API. I recommend using an administrator user from the target tenant.
+> 💡 You will need to authenticate with a user that can run queries against the Graph API. I have not tested the script outside of my own testbed tenant and can't gurantee it works everywhere.
 
 - Clone the directory and change directories into it.
 - Install the dependencies:
@@ -25,14 +25,19 @@ $ python3 main.py [-o] [outfile.json]
 ```
 - Go to the link in the output (https://microsoft.com/devicelogin)
 
+![image](https://github.com/user-attachments/assets/36fa63e2-5838-465c-ba0e-6d594146a221)
+
 - Enter the code provided by the script.
 
-- Authenticate with a user that can call the Graph API.
+- Authenticate with a user that can call the Graph API. Enter your username, password, and complete MFA.
 
- The script will handle the rest! If it finds any suspicious apps, it will print out the application's information along with a color coding for the confidence of the finding.
+- The prompt will read "Are you trying to sign into Microsoft Office?" The script is using device code authentication with the Microsoft Office client ID to retrieve a token after authentication. Select "Continue"
+
+![image](https://github.com/user-attachments/assets/9e10120a-bdd2-4b2e-abaa-6a641daa6d50)
+
+The script will handle the rest! If it finds any suspicious apps, it will print out the application's information along with a color coding for the confidence of the finding.
 
 ![image](https://github.com/user-attachments/assets/8e8dd670-d9ae-4260-9700-83e80489b337)
-
 
 ## Docker Quickstart
 I hate Python dependencies too, so I threw in a simple Dockerfile to run the script:
