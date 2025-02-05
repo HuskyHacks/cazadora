@@ -42,7 +42,7 @@ The script will handle the rest! If it finds any suspicious apps, it will print 
 ## Docker Quickstart
 I hate Python dependencies too, so I threw in a simple Dockerfile to run the script:
 ```
-$ docker build -t cazadora && docker run -it cazadora
+$ docker build -t cazadora . && docker run -it cazadora
 ```
 Then, follow the instructions like normal.
 
