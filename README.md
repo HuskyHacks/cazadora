@@ -35,6 +35,11 @@ $ python3 main.py [-o] [outfile.json]
 
 ![image](https://github.com/user-attachments/assets/9e10120a-bdd2-4b2e-abaa-6a641daa6d50)
 
+> ⚠ I find it necessary to remind people:
+> **NEVER, EVER, EVER EVER EVER** enter a device code from an untrusted source. If you receive one unprompted from an email and it says to go to the legit Microsoft page and enter it, DO NOT ENTER IT.
+>  
+> In this case, we are generating the code and retrieving it in-band by using the script, so we're good 👍
+
 The script will handle the rest! If it finds any suspicious apps, it will print out the application's information along with a color coding for the confidence of the finding.
 
 ![image](https://github.com/user-attachments/assets/8e8dd670-d9ae-4260-9700-83e80489b337)
