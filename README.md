@@ -19,11 +19,14 @@ This is a very quick triage script that does the following:
 $ pip3 install -r requirements.txt
 ```
 > (See the docker quickstart if you don't want to fuss with venv and dependencies)
-- Run the script with the optional -o for the outfile:
+
+- Run the script with your desired authentication type (supports device code authentication by default and web browser interactive login with the Azure SDK). You can also specify `--output` for the outfile 
+
 ```
-$ python3 main.py [-o] [outfile.json]
+$ python3 main.py --auth-method [device_code, azure_sdk] [--output] [outfile.json]
 ```
-- Go to the link in the output (https://microsoft.com/devicelogin)
+### Device Code Auth
+- If using device code, go to the link in the output (https://microsoft.com/devicelogin)
 
 ![image](https://github.com/user-attachments/assets/36fa63e2-5838-465c-ba0e-6d594146a221)
 
@@ -44,12 +47,18 @@ The script will handle the rest! If it finds any suspicious apps, it will print 
 
 ![image](https://github.com/user-attachments/assets/8e8dd670-d9ae-4260-9700-83e80489b337)
 
+### Azure SDK Web Browser Login
+> This is tricky to use with things like containers and WSL, so I'd recommend using device code auth if you're in that position
+
+- If using the web browser auth, the browser will open to the Microsoft login portal. Sign in with your username, password, and MFA.
+- The script will handle the rest!
+
 ## Docker Quickstart
 I hate Python dependencies too, so I threw in a simple Dockerfile to run the script:
 ```
 $ docker build -t cazadora . && docker run -it cazadora
 ```
-Then, follow the instructions like normal.
+Then, follow the instructions like normal. This likely won't work well if you're using the interactive web portal login option but it works just fine with device code auth.
 
 ## What are we looking for?
 This script hunts for a small collection of observed OAuth TTPs. These TTPs come from threat intel and observing OAuth application tradecraft from researching the Huntress partner tenants at scale. This script looks for the following:
