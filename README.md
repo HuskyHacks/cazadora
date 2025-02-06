@@ -5,7 +5,7 @@ Simple hunting script for hunting sussy M365 OAuth Apps.
 
 ## About
 This is a very quick triage script that does the following:
-- Uses [device code authentication](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code) to retrieve a token for a user that is scoped to perform Graph API calls.
+- Uses [device code authentication](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code) or the Azure SDK web login module to retrieve a token for a user that is scoped to perform Graph API calls.
 - Uses that token to call the Graph API to enumerate the user's tenant and collect the the tenant's applications and service principals.
 - Runs several hunting rules against the collected output.
 - Organizes and color codes the results.
