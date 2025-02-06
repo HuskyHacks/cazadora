@@ -12,13 +12,17 @@ def main():
         parser = argparse.ArgumentParser(
             description="Simple hunting script for hunting sussy M365 OAuth Apps.")
         parser.add_argument("--output", type=str,
-                            help="Output file to save JSON data")
+                            help="Output file to save JSON data. Writes all JSON collected from calling the Graph API for more info.")
+        parser.add_argument("--auth-mode", type=str, choices=["device_code", "azure_sdk"], default="device_code",
+                            help="Authentication method: 'device_code' (default) or 'azure_sdk'.")
         args = parser.parse_args()
 
         print_logo()
 
         print("[*] Authenticating to Azure...")
-        access_token = authenticate_to_azure()
+
+        access_token = authenticate_to_azure(auth_mode=args.auth_mode)
+
         if not access_token:
             print(
                 "[-] Authentication failed. Please check your credentials and try again.")
