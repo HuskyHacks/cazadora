@@ -74,7 +74,7 @@ So if you're thinking "hey, hunting these apps is great, but what's the best way
 
 By default, any identity in a tenant can install any app without requiring permission. Subsequently, that user can consent to any permissions that affect their own resources. So while many heavy hitting permissions (mostly the ".All" permissions) require admin consent, your average user can and will happily hand over consent to permissions to access their own emails, contacts, and the like unless you disable that default config.
 
-I'd recommend reading about [configuring how users consent to applications](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/configure-user-consent?pivots=portal). I'd also recommend looking at [Merill Fernando's resource on Graph API permissions](https://graphpermissions.merill.net/permission/) to get an idea of any given application's permission power. Keep in mind that the Graph API is just one of the many resources an app can have permissions over. 
+I'd recommend reading about [configuring how users consent to applications](https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/configure-user-consent?pivots=portal). I'd also recommend looking at [Merill Fernando's resource on Graph API permissions](https://graphpermissions.merill.net/permission/) to get an idea of any given application's permission power, which ones can be installed without admin consent, and which ones require admin consent. Keep in mind that the Graph API is just one of the many resources an app can have permissions over. 
 
 
 ## References
