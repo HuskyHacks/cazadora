@@ -23,7 +23,7 @@ $ pip3 install -r requirements.txt
 - Run the script with your desired authentication type (supports device code authentication by default and web browser interactive login with the Azure SDK). You can also specify `--output` for the outfile 
 
 ```
-$ python3 main.py --auth-method [device_code, azure_sdk] [--output] [outfile.json]
+$ python3 main.py --auth-mode [device_code, azure_sdk] [--output] [outfile.json]
 ```
 ### Device Code Auth
 - If using device code, go to the link in the output (https://microsoft.com/devicelogin)
