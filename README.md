@@ -14,6 +14,9 @@ This is a very quick triage script that does the following:
 > 💡 You will need to authenticate with a user that can run queries against the Graph API. I have not tested the script outside of my own testbed tenant and can't guarantee it works everywhere.
 
 - Clone the directory and change directories into it.
+```
+$ git clone https://github.com/HuskyHacks/cazadora.git && cd cazadora
+```
 - Install the dependencies:
 ```
 $ pip3 install -r requirements.txt
