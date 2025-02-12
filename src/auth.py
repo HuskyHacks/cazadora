@@ -5,11 +5,11 @@ from azure.identity import InteractiveBrowserCredential
 
 GRAPH_RESOURCE = "https://graph.microsoft.com"
 GRAPH_SCOPE = GRAPH_RESOURCE + "/.default"
-DEVICE_CODE_URL = "https://login.microsoftonline.com/common/oauth2/devicecode?api-version=1.0"
+
 TOKEN_URL = "https://login.microsoftonline.com/common/oauth2/token?api-version=1.0"
 
 
-def authenticate_with_device_code():
+def authenticate_with_device_code(tenant_id="common"):
     """
     Perform the device code flow to authenticate to Azure and obtain an access token.
     """
@@ -19,7 +19,7 @@ def authenticate_with_device_code():
         "resource": GRAPH_RESOURCE
     }
 
-    device_code_response = requests.post(DEVICE_CODE_URL, data=payload)
+    device_code_response = requests.post("https://login.microsoftonline.com/"+tenant_id+"/oauth2/devicecode?api-version=1.0", data=payload)
     device_code_data = device_code_response.json()
 
     print(Fore.YELLOW + "[!] To authenticate, visit " + Fore.CYAN + "https://microsoft.com/devicelogin" +
@@ -73,7 +73,7 @@ def authenticate_with_azure_sdk():
         return None
 
 
-def authenticate_to_azure(auth_mode="device_code"):
+def authenticate_to_azure(auth_mode="device_code", tenant_id="common"):
     """
     Authenticate to Azure using the selected method.
 
@@ -89,4 +89,4 @@ def authenticate_to_azure(auth_mode="device_code"):
             "[-] Azure SDK authentication failed. Falling back to device code authentication...")
 
     print("[*] Attempting authentication using device code flow...")
-    return authenticate_with_device_code()
+    return authenticate_with_device_code(tenant_id)
