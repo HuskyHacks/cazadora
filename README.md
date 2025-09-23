@@ -86,6 +86,6 @@ I'd recommend reading about [configuring how users consent to applications](http
 - https://www.proofpoint.com/us/blog/email-and-cloud-threats/defeating-malicious-application-creation-attacks
 
 ## Disclaimer
-This script cannot definitively prove that your tenant does not have any suspicious applications installed in it. The absence of evidence is never the evidence of absense. Please do your own due diligence during investigation, whether this script identifies potentially suspicious apps or not.
+This script cannot definitively prove that your tenant does not have any suspicious applications installed in it. The absence of evidence is never the evidence of absence. Please do your own due diligence during investigation, whether this script identifies potentially suspicious apps or not.
 
 This script is distributed with a hope that it will be useful, but we (myself and Huntress) do not make any promises or guarantees about its efficacy. Please see the LICENSE file for more info.
