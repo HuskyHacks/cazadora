@@ -15,13 +15,14 @@ def main():
                             help="Output file to save JSON data. Writes all JSON collected from calling the Graph API for more info.")
         parser.add_argument("--auth-mode", type=str, choices=["device_code", "azure_sdk"], default="device_code",
                             help="Authentication method: 'device_code' (default) or 'azure_sdk'.")
+        parser.add_argument("--tenant-id", type=str, help="Isert a Tenant Id for the Tenant that you wish to access", default="common")
         args = parser.parse_args()
 
         print_logo()
 
         print("[*] Authenticating to Azure...")
 
-        access_token = authenticate_to_azure(auth_mode=args.auth_mode)
+        access_token = authenticate_to_azure(auth_mode=args.auth_mode, tenant_id=args.tenant_id)
 
         if not access_token:
             print(
